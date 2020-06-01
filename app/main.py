@@ -1,8 +1,8 @@
 from flask import Flask
 from flask import jsonify 
 import pandas as pd
-from data.connection import db_session
-from data.models import QC_Wholesale
+from app.data.connection import db_session
+from app.data.models import QC_Wholesale
   
 app = Flask(__name__) 
   
