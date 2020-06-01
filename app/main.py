@@ -8,8 +8,8 @@ app = Flask(__name__)
 def home_view(): 
         return "<h1>Welcome to Sauti DS</h1>"
 
-@app.route('/dummy_qcwholesale')
+@app.route("/dummy_qcwholesale")
 def dummy_qcwholesale():
-        df = pd.read_csv("qc_wholesale.csv")
+        df = pd.read_csv("app/qc_wholesale.csv")
         return jsonify(df)
 
