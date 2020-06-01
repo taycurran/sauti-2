@@ -11,5 +11,5 @@ def home_view():
 @app.route("/dummy_qcwholesale/")
 def dummy_qcwholesale():
         df = pd.read_csv("app/qc_wholesale.csv")
-        return df.to_json()
+        return jsonify(df.to_numpy())
 
