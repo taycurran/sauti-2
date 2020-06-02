@@ -1,3 +1,2 @@
 web: gunicorn wsgi:app
-heroku addons: add heroku-postgresql:app
-heroku config | grep POSTGRESQL
+heroku addons:create heroku-postgresql:hobby-dev
