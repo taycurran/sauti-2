@@ -27,5 +27,5 @@ print("Cursor and Connection Closed.")
 result = []
 for index, row in df.iterrows():
                 result.append(dict(row))
-print(result)
+print(result[0:5])
         
