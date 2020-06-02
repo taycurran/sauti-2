@@ -56,7 +56,7 @@ def get_table():
         labs_conn.close()
         print("Cursor and Connection Closed.")
         result = []
-        for index, row in df.iterrows():
+        for row in df.iterrows():
                         result.append(dict(row))
         return jsonify(result)
         
