@@ -24,7 +24,8 @@ from dotenv import load_dotenv
 # print("Cursor and Connection Closed.")
   
 app = Flask(__name__) 
-  
+app.config['JSON_SORT_KEYS'] = False
+
 @app.route("/") 
 def home_view(): 
         return "<h1>Welcome to Sauti DS</h1>"
