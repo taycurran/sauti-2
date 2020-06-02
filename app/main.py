@@ -58,7 +58,7 @@ def get_table():
         result = []
         for index, row in df.iterrows():
                         result.append(dict(row))
-        return jsonfiy(result)
+        return jsonify(result)
         
 
 
