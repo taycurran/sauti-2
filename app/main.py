@@ -43,7 +43,7 @@ def get_table():
         labs_curs.execute(Q_select_all)
         print("\nSELECT Query Excecuted")
 
-        DF_QC_WHOLESALE = pd.DataFrame(labs_curs.fetchmany(200))
+        DF_QC_WHOLESALE = pd.DataFrame(labs_curs.fetchall())
         print(DF_QC_WHOLESALE.head())
 
         labs_curs.close()
