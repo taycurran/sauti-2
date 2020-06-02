@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 import pandas as pd
 load_dotenv()
 
-labs_conn = psycopg2.connect(os.getenv(""))
+labs_conn = psycopg2.connect(os.getenv(''))
 labs_curs = labs_conn.cursor()
 
 Q_select_all = """SELECT * FROM qc_wholesale LIMIT 200;"""
