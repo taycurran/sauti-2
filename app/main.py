@@ -93,8 +93,8 @@ def get_table_psws():
         labs_curs = labs_conn.cursor()
 
         Q_select_all = """SELECT product_name, market_id,
-                        source_id, currency_code, observed_price,
-                        observed_class
+                        source_id, currency_code, date_price,
+                         observed_price, observed_class
                          FROM product_clean_wholesale_info;"""
         labs_curs.execute(Q_select_all)
         print("\nSELECT * Query Excecuted.")
@@ -121,9 +121,9 @@ def get_table_psrt():
         labs_curs = labs_conn.cursor()
 
         Q_select_all = """SELECT product_name, market_id,
-                        source_id, currency_code, observed_price,
-                        observed_class
-                         FROM product_clean_retail_info;"""
+                        source_id, currency_code, date_price,
+                         observed_price, observed_class
+                         FROM product_clean_wholesale_info;"""
         labs_curs.execute(Q_select_all)
         print("\nSELECT * Query Excecuted.")
 
