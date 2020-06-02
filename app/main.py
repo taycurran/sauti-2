@@ -36,7 +36,7 @@ def dummy_qcwholesale():
 
 @app.route("/qcwholesale/")
 def get_table():
-        labs_conn = psycopg2.connect("")
+        labs_conn = psycopg2.connect(os.getenv("DATABASE_URL"))
         labs_curs = labs_conn.cursor()
 
         Q_select_all = """SELECT * FROM qc_wholesale LIMIT 200;"""
