@@ -34,29 +34,32 @@ def dummy_qcwholesale():
         df = pd.read_csv("app/qc_wholesale.csv")
         return df.to_json()
 
-@app.route("/qcwholesale/")
+@app.route("/data-quality-ws/")
 def get_table():
         labs_conn = psycopg2.connect(os.getenv("DATABASE_URL"))
         labs_curs = labs_conn.cursor()
 
-        Q_select_all = """SELECT * FROM qc_wholesale LIMIT 200;"""
+        Q_select_all = """SELECT * FROM qc_wholesale;"""
         labs_curs.execute(Q_select_all)
-        print("\nSELECT Query Excecuted")
+        print("\nSELECT * Query Excecuted.")
 
-        DF_QC_WHOLESALE = pd.DataFrame(labs_curs.fetchall())
-        print(DF_QC_WHOLESALE.head())
+        rows = labs_curs.fetchall()
+
+        df = pd.DataFrame(rows, columns= [
+                "qc_id", "market", "product", "source",
+                "start", "end", "timeliness", "data_length",
+                "completeness", "duplicates", "mode_D", "data_points",
+                "DQI", "DQI_cat"
+        ])
 
         labs_curs.close()
         labs_conn.close()
         print("Cursor and Connection Closed.")
-        result = {}
-        for index, row in DF_QC_WHOLESALE.iterrows():
-                result[index] = dict(row)
+        result = []
+        for index, row in df.iterrows():
+                        result.append(dict(row))
         return jsonify(result)
         
 
-# @app.teardown_appcontext
-# def shutdown_session(exception=None):
-#         db_session.remove()
 
  
