@@ -36,7 +36,7 @@ def dummy_qcwholesale():
         return df.to_json()
 
 @app.route("/data-quality-ws/")
-def get_table():
+def get_table_dqws():
         labs_conn = psycopg2.connect(os.getenv("DATABASE_URL"))
         labs_curs = labs_conn.cursor()
 
@@ -62,7 +62,7 @@ def get_table():
         return jsonify(result)
 
 @app.route("/data-quality-rt/")
-def get_table():
+def get_table_dqrt():
         labs_conn = psycopg2.connect(os.getenv("DATABASE_URL"))
         labs_curs = labs_conn.cursor()
 
