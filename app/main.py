@@ -1,8 +1,9 @@
 from flask import Flask
 from flask import jsonify 
 import pandas as pd
-from app.data.connection import db_session
-from app.data.models import QC_Wholesale
+# from app.data.connection import db_session
+# from app.data.models import QC_Wholesale
+from app.data.connection import DF_QC_WHOLESALE
   
 app = Flask(__name__) 
   
@@ -17,10 +18,14 @@ def dummy_qcwholesale():
 
 @app.route("/qcwholesale/")
 def get_table():
-        return QC_Wholesale.query.all()
+        result = {}
+        for index, row in DF_QC_WHOLESALE.iterrows():
+                result[index] = dict(row)
+        return jsonify(result)
+        
 
-@app.teardown_appcontext
-def shutdown_session(exception=None):
-        db_session.remove()
+# @app.teardown_appcontext
+# def shutdown_session(exception=None):
+#         db_session.remove()
 
  

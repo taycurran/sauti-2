@@ -19,6 +19,32 @@ class QC_Wholesale(Base):
     duplicates = Column(String)
     mode_D = Column(String)
 
+    def __init__(self, 
+                 market=None,
+                 product=None,
+                 souce=None,
+                 start=None,
+                 end=None,
+                 timeliness=None,
+                 data_length=None,
+                 completeness=None,
+                 duplicates=None,
+                 mode_D=None):
+        self.market = market,
+        self.product = product,
+        self.source = source,
+        self.start = start,
+        self.end = end,
+        self.timeliness = timeliness,
+        self.data_length = data_length,
+        self.completeness = completeness,
+        self.duplicates = duplicates,
+        self.mode_D = mode_D
+
+
+    def __repr__(self):
+        return '<Product %r>' % (self.product)
+
 class QC_Retail(Base):
     __tablename__ = "qc_retail"
 
