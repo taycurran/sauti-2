@@ -44,8 +44,7 @@ def get_table_dqws():
 
         rowsM = labs_curs.fetchall()
         dfM = pd.DataFrame(rowsM, columns=["id", "market_id", "market_name", "country_code"])
-
-
+        
         labs_curs.close()
         labs_conn.close()
         print("Cursor and Connection Closed.")
@@ -58,6 +57,7 @@ def get_table_dqws():
         'data_length', 'completeness', 'duplicates', 'mode_D', 'data_points',
         'DQI', 'DQI_cat']
         merged = merged[cols]
+        merged['price_category'] = "wholesale"
 
         result = []
         for index, row in merged.iterrows():
@@ -69,7 +69,7 @@ def get_table_dqrt():
         labs_conn = psycopg2.connect(os.getenv("DATABASE_URL"))
         labs_curs = labs_conn.cursor()
 
-        Q_select_all = """SELECT * FROM qc_wholesale;"""
+        Q_select_all = """SELECT * FROM qc_retail;"""
         labs_curs.execute(Q_select_all)
         print("\nSELECT * Query Excecuted.")
 
@@ -102,6 +102,7 @@ def get_table_dqrt():
         'data_length', 'completeness', 'duplicates', 'mode_D', 'data_points',
         'DQI', 'DQI_cat']
         merged = merged[cols]
+        merged['price_category'] = "retail"
 
         result = []
         for index, row in merged.iterrows():
@@ -136,6 +137,7 @@ def get_table_psws():
         cols = ['country', 'market', 'product_name', 'observed_price', 'observed_class',
                 'market_id', 'source_id']
         df = df[cols]
+        df['price_category'] = "wholesale"
 
         result = []
         for index, row in df.iterrows():
@@ -170,6 +172,7 @@ def get_table_psrt():
         cols = ['country', 'market', 'product_name', 'observed_price', 'observed_class',
                 'market_id', 'source_id']
         df = df[cols]
+        df['price_category'] = "retail"
 
         result = []
         for index, row in df.iterrows():
