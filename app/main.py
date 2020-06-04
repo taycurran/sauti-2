@@ -116,7 +116,7 @@ def get_table_psws():
         
         Q_select_all = """SELECT product_name, market_id,
                         source_id, currency_code, date_price,
-                         observed_price, observed_class
+                         observed_price, observed_class, stressness
                          FROM product_clean_wholesale_info;"""
         labs_curs.execute(Q_select_all)
         print("\nSELECT * Query Excecuted.")
@@ -126,7 +126,7 @@ def get_table_psws():
         df = pd.DataFrame(rows, columns= [
                         "product_name", "market_id", "source_id",
                         "currency_code", "date_price", "observed_price",
-                        "observed_class"
+                        "observed_class", "stressness"
                 ])
         labs_curs.close()
         labs_conn.close()
@@ -134,7 +134,7 @@ def get_table_psws():
 
         df['market'] = df['market_id'].str.split().str[0:-2].str.join(" ")
         df['country'] = df['market_id'].str.split().str[-1]
-        cols = ['country', 'market', 'product_name', 'observed_price', 'observed_class',
+        cols = ['country', 'market', 'product_name','date_price', 'observed_price', 'currency_code', 'observed_class', 'stressness',
                 'market_id', 'source_id']
         df = df[cols]
         df['price_category'] = "wholesale"
@@ -151,7 +151,7 @@ def get_table_psrt():
         
         Q_select_all = """SELECT product_name, market_id,
                         source_id, currency_code, date_price,
-                         observed_price, observed_class
+                         observed_price, observed_class, stressness
                          FROM product_clean_retail_info;"""
         labs_curs.execute(Q_select_all)
         print("\nSELECT * Query Excecuted.")
@@ -161,7 +161,7 @@ def get_table_psrt():
         df = pd.DataFrame(rows, columns= [
                         "product_name", "market_id", "source_id",
                         "currency_code", "date_price", "observed_price",
-                        "observed_class"
+                        "observed_class", "stressness"
                 ])
         labs_curs.close()
         labs_conn.close()
@@ -169,7 +169,7 @@ def get_table_psrt():
 
         df['market'] = df['market_id'].str.split().str[0:-2].str.join(" ")
         df['country'] = df['market_id'].str.split().str[-1]
-        cols = ['country', 'market', 'product_name', 'observed_price', 'observed_class',
+        cols = ['country', 'market', 'product_name','date_price', 'observed_price', 'currency_code', 'observed_class', 'stressness',
                 'market_id', 'source_id']
         df = df[cols]
         df['price_category'] = "retail"

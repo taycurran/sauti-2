@@ -5,6 +5,7 @@ import os
 from dotenv import load_dotenv
 import pandas as pd
 
+
 labs_conn = psycopg2.connect(os.getenv("DATABASE_URL"))
 labs_curs = labs_conn.cursor()
 
@@ -28,7 +29,7 @@ print("Cursor and Connection Closed.")
 
 df['market'] = df['market_id'].str.split().str[0:-2].str.join(" ")
 df['country'] = df['market_id'].str.split().str[-1]
-cols = ['country', 'market', 'product_name', 'observed_price', 'observed_class',
+cols = ['country', 'market', 'product_name','date_price', 'observed_price', 'currency_code', 'observed_class',
         'market_id', 'source_id']
 df = df[cols]
 
